@@ -1,0 +1,156 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Pocket Math</title> <!-- ✅ Title corrected here -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(-45deg, #1e3c72cc, #2a5298cc, #0f2027cc, #203a43cc);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      z-index: 0;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .quiz-container {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+      animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    select, button {
+      padding: 12px;
+      width: 100%;
+      border-radius: 12px;
+      font-size: 1rem;
+      margin-bottom: 15px;
+      font-weight: bold;
+      background: linear-gradient(to right, #00f2fe, #4facfe);
+      border: none;
+      color: black;
+      box-shadow: 0 0 12px #0ff;
+      cursor: pointer;
+    }
+
+    .question {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .choice-button {
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .choice-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .choice-button.selected {
+      background: linear-gradient(to right, #00ff87, #60efff);
+      color: black;
+      box-shadow: 0 0 20px #00ff87;
+    }
+
+    .result {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .progress {
+      height: 10px;
+      background: #333;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: #00ff87;
+      width: 0%;
+      transition: width 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h2 style="text-align:center; margin-bottom: 15px;">Your Pocket Math</h2> <!-- ✅ Added visible heading -->
+    
+    <select id="topicSelect" onchange="selectTopic()">
+      <option value="" disabled selected>Choose a topic</option>
+      <option value="integration">Integration</option>
+      <option value="algebra">Algebra</option>
+      <option value="trigonometry">Trigonometry</option>
+      <option value="misc">Misc</option>
+    </select>
+
+    <div id="quizBox" style="display:none;">
+      <div class="question" id="question">Question will appear here</div>
+      <div class="choices" id="choices"></div>
+      <div class="progress">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+      <button onclick="checkAnswer()">Submit Answer</button>
+      <div class="result" id="result"></div>
+      <button onclick="resetQuiz()">Reset Quiz</button>
+    </div>
+  </div>
+
+  <audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-3.mp3"></audio>
+  <audio id="correctSound" src="https://www.soundjay.com/buttons/sounds/button-4.mp3"></audio>
+  <audio id="wrongSound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

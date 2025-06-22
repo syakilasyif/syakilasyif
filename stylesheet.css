@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+  background: 
+    linear-gradient(-45deg, #1e3c72cc, #2a5298cc, #0f2027cc, #203a43cc), 
+    url('https://cdn.pixabay.com/photo/2016/06/13/10/44/math-1453833_1280.jpg'); /* Example math background */
+  background-blend-mode: overlay;
+  background-size: cover, 400% 400%;
+  background-position: center, 0% 50%;
+  animation: gradientBG 12s ease infinite;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
